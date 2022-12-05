@@ -1,0 +1,48 @@
+-- 1.6
+select * from atnic_ambasador
+
+-- 1.7
+select * from atnic_ambasador
+inner join antic_country on antic_country.conID  = antic_country.conID
+
+-- 1.8
+select * from atnic_ambasador 
+inner join antic_country on antic_country.conID = atnic_ambasador.conID
+where atnic_ambasador.conID = 1;
+
+-- 1.9
+select * from atnic_ambasador
+inner join antic_country on antic_country.conID = atnic_ambasador.conID
+where atnic_ambasador.ID = 1;
+
+-- 1.10
+insert into atnic_ambasador values('італія','Європа','4500',2, 10)
+select * from atnic_ambasador
+
+-- 1.11
+insert into antic_country values('хто тут?')
+select * from antic_country
+
+-- 1.12
+update atnic_ambasador set country = 'малазія', region = 'де це?', square = 200, conID = 1, year = 2022 where ID = 1
+select * from atnic_ambasador
+
+-- 1.13
+delete from atnic_ambasador where ID=3
+select * from atnic_ambasador
+
+-- 1.14
+select * from antic_country
+if COL_LENGTH('antic_country','conID') IS NOT NULL
+    print 'Column "conID" Exists';
+else
+    print 'Column "conID" does not Exists';
+      ALTER TABLE antic_country
+      ADD conID int;
+if COL_LENGTH('antic_country','Description') IS NOT NULL
+    print 'Column "Description" Exists';
+else
+    print 'Column "Description" does not Exists';
+      ALTER TABLE antic_country
+      ADD Description nvarchar(MAX);
+      insert into antic_country values(1, 'Materialist'), (2, 'Existentialist'), (3, 'Dualist'), (4, 'Hermeneutic'), (5, 'Idealist')

@@ -1,0 +1,22 @@
+gcc -c main.c
+gcc -c -fPIC f1.c
+gcc -c -fPIC f2.c
+gcc -c -fPIC f3.c
+gcc -c -fPIC f4.c
+gcc -shared -o libf1.so f1.o
+gcc -shared -o libf2.so f2.o -L. -lf1
+gcc -shared -o libf3.so f3.o -L. -lf1
+gcc -shared -o libf4.so f4.o -L. -lf2 -lf3
+gcc -o main main.o -L. -lf1 -lf2 -lf3 -lf4 -Wl,-rpath,.
+
+gcc -L/root/shlyapa -Wl,-rpath=/root/shlyapa -Wall -o main main.c -lf1 -lf2 -lf3 -lf4
+
+cp /root/shlyapa/libf1.so /usr/lib
+cp /root/shlyapa/libf2.so /usr/lib
+cp /root/shlyapa/libf3.so /usr/lib
+cp /root/shlyapa/libf4.so /usr/lib
+
+chmod 0777 /usr/lib/libf1.so
+chmod 0777 /usr/lib/libf2.so
+chmod 0777 /usr/lib/libf3.so
+chmod 0777 /usr/lib/libf4.so
